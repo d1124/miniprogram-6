@@ -14,12 +14,15 @@
   <button bindtap="addMarkers">
     添加marker
   </button>
+  <button bindtap="addMarker1">
+    添加一个marker
+  </button>
   <button bindtap="removeMarkers">
     移除marker
   </button>
 
   <button bindtap="To2Page">
-    222
+    转到第二页
   </button>
   <button bindtap="getcenter">
     获取中心坐标

@@ -69,15 +69,12 @@ getval(){
     })
   },
 
-  onMapTap(event) {
-    const that = this;
-    const latitude = event.detail.latitude; // 获取点击位置的纬度
-    const longitude = event.detail.longitude; // 获取点击位置的经度
 
-    console.log(latitude)
-    console.log(longitude)
+  Toindex() {
+    console.log("111")
+    wx.navigateTo({ url: '/pages/index/index' });
+    console.log("222")
   },
-
   RRR(){
     console.log("2RRRRhhhhhhkkkk")
     wx.getLocation({

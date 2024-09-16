@@ -6,13 +6,13 @@
   </button>
 
 <editor id="kkk">   dd</editor>
-<input placeholder="请输入昵称" bind:change="onInput" data-key="kkk1"/>
-
 
 <button bind:tap="RRR">kkk</button>
-<button bind:tap="getval">kkkw</button>
-<text value="{{kkk1}}"></text>
 
+<input placeholder="请输入" bind:change="onInput" data-key="kkk1"/>
+<button bind:tap="getval">上传输入框</button>
+<text>上传的内容是：{{kkk1}}</text>
+<button bind:tap="Toindex">返回首页</button>
 <navigator>
 <block>2222</block>
 <span>ddd</span>

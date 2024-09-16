@@ -48,14 +48,6 @@ Page({
     })
   },
 
-  // onMapTap(event) {
-  //   const that = this;
-  //   const latitude = event.detail.latitude; // 获取点击位置的纬度
-  //   const longitude = event.detail.longitude; // 获取点击位置的经度
-
-  //   console.log(latitude)
-  //   console.log(longitude)
-  // },
   bindEvent() {
     this.mapCtx.initMarkerCluster({
       enableDefaultStyle: false,
@@ -109,6 +101,40 @@ Page({
     wx.navigateTo({ url: '/pages/index/index2' });
     console.log("222")
   },
+  addMarker1() {
+    const marker = {
+      id: 1,
+      iconPath: img,
+      width: 50,
+      height: 50,
+      joinCluster: true, // 指定了该参数才会参与聚合
+      label:{
+        width: 50,
+        height: 30,
+        borderWidth: 1,
+        borderRadius: 10,
+        bgColor: '#ffffff'
+      }
+    }
+    const markers = []
+  
+    const newMarker = Object.assign(marker, {
+      latitude: 39.9283666628888,
+      longitude: 116.5819000069855,
+    })
+    newMarker.id = 9
+    newMarker.label.content="666668888"
+    markers.push(newMarker)
+    this.mapCtx.addMarkers({
+      markers,
+      clear: false,
+      complete(res) {
+        console.log('addMarkers', res)
+      }
+    })
+
+  },
+
   addMarkers() {
     const marker = {
       id: 1,
