@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<navigation-bar title="111" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+
+  <map 
+  id="mapId"
+  class="map"
+  latitude="{{latitude}}"
+  longitude="{{longitude}}"
+  bindmarkertap="onMarkerTap"
+  bindcallouttap="onCalloutTap"
+  bindlabeltap="onLabelTap"
+></map>
+<view class="btn-area service">
+  <button bindtap="addMarkers">
+    添加marker
+  </button>
+  <button bindtap="removeMarkers">
+    移除marker
+  </button>
+
+  <button bindtap="To2Page">
+    222
+  </button>
+  <button bindtap="getcenter">
+    获取中心坐标
+  </button>
+</view>
+  <view class="container">
+    我是你哥
+  </view>
+
+
