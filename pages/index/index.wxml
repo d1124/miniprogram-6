@@ -27,9 +27,14 @@
   <button bindtap="getcenter">
     获取中心坐标
   </button>
-</view>
-  <view class="container">
-    我是你哥
+  <view>
+    <input placeholder="请输入" bind:change="onInput" data-key="kkk1"/>
+    <button bindtap="upload">
+    上传
+    </button>
   </view>
+
+</view>
+
 
 

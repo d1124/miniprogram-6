@@ -3,7 +3,7 @@
 var Bmob = require('./Bmob-2.5.30.min.js');
 const app = getApp()
 const img = '../image/location.png'
-Bmob.initialize("4adb3d93239ec4de3a9eefd21a562585", "1bffa96524a6d4a8949533cd2d9573ae");
+Bmob.initialize("9e3567b1a20eaed7", "111222");
 Page({
   data: {
     latitude: 39.9283666628888,
@@ -22,14 +22,46 @@ Page({
     // 使用默认聚合效果时可注释下一句
     // this.bindEvent()
   },
+  onInput(e) {
+    const { key } = e.currentTarget.dataset;
+    const { value } = e.detail;
+
+    console.log(key)
+    console.log(value)
+    this.setData({ [key]: value });
+    console.log(this.data.kkk1)
+  },
+  upload(){
+    console.log(this.data.kkk1)
+    const kk=this.data.kkk1
+    this.mapCtx.getCenterLocation({
+      success: function (res) {
+          console.log(res.latitude)
+          console.log(res.longitude)
+    const query = Bmob.Query('pyq');
+    query.set('jd', res.latitude) 
+    query.set('wd', res.longitude) 
+    query.set("xx",kk)
+    query.set("yh","admin")
+    query.save().then(res => {
+    console.log(res)
+    }).catch(err => {
+    console.log(err)
+    })
+
+      }, 
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+
+
+  },
   getcenter(){
     this.mapCtx.getCenterLocation({
       success: function (res) {
-          console.log(res)
-          // that.setData({
-          //     longitude: res.longitude,
-          //     latitude: res.latitude,
-          // })
+        console.log(res.latitude)
+        console.log(res.longitude)
       }, 
       fail: function (res) {
             console.log(res)
@@ -116,14 +148,20 @@ Page({
         bgColor: '#ffffff'
       }
     }
-    const markers = []
+
+    const query = Bmob.Query('pyq');
+    query.find().then(res => {
+      console.log(res[0].jd)
+      console.log(res[0].wd)
+      console.log(res[0].xx)
+      const markers = []
   
     const newMarker = Object.assign(marker, {
-      latitude: 39.9283666628888,
-      longitude: 116.5819000069855,
+      latitude: res[0].jd,
+      longitude: res[0].wd,
     })
     newMarker.id = 9
-    newMarker.label.content="666668888"
+    newMarker.label.content=res[0].xx
     markers.push(newMarker)
     this.mapCtx.addMarkers({
       markers,
@@ -132,6 +170,25 @@ Page({
         console.log('addMarkers', res)
       }
     })
+
+    })
+
+  //   const markers = []
+  
+  //   const newMarker = Object.assign(marker, {
+  //     latitude: res[0].jd,
+  //     longitude: res[0].wd,
+  //   })
+  //   newMarker.id = 9
+  //   newMarker.label.content=res[0].xx
+  //   markers.push(newMarker)
+  //   this.mapCtx.addMarkers({
+  //     markers,
+  //     clear: false,
+  //     complete(res) {
+  //       console.log('addMarkers', res)
+  //     }
+  //   })
 
   },
 
