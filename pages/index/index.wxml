@@ -6,16 +6,17 @@
   class="map"
   latitude="{{latitude}}"
   longitude="{{longitude}}"
+  show-location="true"
   bindmarkertap="onMarkerTap"
   bindcallouttap="onCalloutTap"
   bindlabeltap="onLabelTap"
 ></map>
 <view class="btn-area service">
-  <button bindtap="addMarkers">
-    添加marker
+  <button bindtap="fz">
+    去你那
   </button>
   <button bindtap="addMarker1">
-    添加一个marker
+    添加数据库里的marker
   </button>
   <button bindtap="removeMarkers">
     移除marker
@@ -33,8 +34,11 @@
     上传
     </button>
   </view>
+  <button bindtap="xq">
+    你是弟弟
+  </button>
 
 </view>
-
+<text>详情：{{xq}}</text>
 
 

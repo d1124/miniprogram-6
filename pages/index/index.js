@@ -8,6 +8,7 @@ Page({
   data: {
     latitude: 39.9283666628888,
     longitude: 116.5819000069855,
+    xq:"你是"
   },
   onLoad: function () {
     this.mapCtx = wx.createMapContext('mapId')
@@ -16,6 +17,10 @@ Page({
 
 
     this.mapCtx.on('markerClusterClick', res =>{
+      // this.setData({ [xq]: 123 });
+      wx.showToast({
+        title: '让你点了吗',
+      })
       console.log('markerClusterClick', res)
     })
 
@@ -48,13 +53,15 @@ Page({
     }).catch(err => {
     console.log(err)
     })
-
+    // this.setData({ ["kkk1"]: "" });
       }, 
       fail: function (res) {
         console.log(res)
       }
     })
-
+    wx.showToast({
+      title: '上传成功',
+    })
 
   },
   getcenter(){
@@ -70,16 +77,14 @@ Page({
   },
 
   fz(){
-
-    this.mapCtx.addMarkers({
-      markers,
-      clear: false,
-      complete(res) {
-        console.log('addMarkers', res)
-      }
-    })
+    this.mapCtx.moveToLocation()
   },
-
+xq(){
+  wx.showToast({
+    title: '我才是弟弟',
+  })
+  this.setData({xq:"你是弟弟"})
+},
   bindEvent() {
     this.mapCtx.initMarkerCluster({
       enableDefaultStyle: false,
@@ -139,9 +144,9 @@ Page({
       iconPath: img,
       width: 50,
       height: 50,
-      joinCluster: true, // 指定了该参数才会参与聚合
+      joinCluster: false, // 指定了该参数才会参与聚合
       label:{
-        width: 50,
+        width: 100,
         height: 30,
         borderWidth: 1,
         borderRadius: 10,
@@ -151,17 +156,20 @@ Page({
 
     const query = Bmob.Query('pyq');
     query.find().then(res => {
-      console.log(res[0].jd)
-      console.log(res[0].wd)
-      console.log(res[0].xx)
+      console.log(res)
+      console.log(res.length)
       const markers = []
-  
+      for(let i=0;i<res.length;i++){
+        console.log(i)
+        console.log(res[i].jd)
+        console.log(res[i].wd)
+        console.log(res[i].xx)
     const newMarker = Object.assign(marker, {
-      latitude: res[0].jd,
-      longitude: res[0].wd,
+      latitude: res[i].jd,
+      longitude: res[i].wd,
     })
-    newMarker.id = 9
-    newMarker.label.content=res[0].xx
+    newMarker.id = 9+i
+    newMarker.label.content=res[i].xx
     markers.push(newMarker)
     this.mapCtx.addMarkers({
       markers,
@@ -170,25 +178,9 @@ Page({
         console.log('addMarkers', res)
       }
     })
-
+      }
     })
 
-  //   const markers = []
-  
-  //   const newMarker = Object.assign(marker, {
-  //     latitude: res[0].jd,
-  //     longitude: res[0].wd,
-  //   })
-  //   newMarker.id = 9
-  //   newMarker.label.content=res[0].xx
-  //   markers.push(newMarker)
-  //   this.mapCtx.addMarkers({
-  //     markers,
-  //     clear: false,
-  //     complete(res) {
-  //       console.log('addMarkers', res)
-  //     }
-  //   })
 
   },
 
